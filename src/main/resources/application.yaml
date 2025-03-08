@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: shortener
+  jpa:
+    database: POSTGRESQL
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: "\"shortener\""
+      open-in-view: false
+    datasource:
+      hikari:
+        driver-class-name: org.postgresql.Driver
