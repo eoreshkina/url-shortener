@@ -2,6 +2,7 @@ package dkb.url_shortner
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.ArgumentCaptor
@@ -66,4 +67,34 @@ class ShortenerServiceTest {
         assertEquals(urlMapping, result)
     }
 
+    @Test
+    fun `should return original url`() {
+        //given
+        val urlMapping = UrlMapping(longLink = testUrl, shortLink = testShortUrl)
+        `when`(repository.findByShortUrl(testShortUrl)).thenReturn(urlMapping)
+
+        //when
+        val result = service.getOriginalUrl(testShortUrl)
+
+        //then
+        verify(repository).findByShortUrl(testShortUrl)
+
+        assertEquals(testUrl, result)
+    }
+
+    @Test
+    fun `should throw exception when original url not found`() {
+        //given
+        `when`(repository.findByShortUrl(testShortUrl)).thenReturn(null)
+
+        //when
+        val exception = assertThrows(UrlNotFoundException::class.java) {
+            service.getOriginalUrl(testShortUrl)
+        }
+
+        //then
+        verify(repository).findByShortUrl(testShortUrl)
+        assertEquals("Invalid short url", exception.message)
+
+    }
 }

@@ -26,4 +26,9 @@ class ShortenerService(
         val encoded = Base64.getUrlEncoder().encodeToString(digest).substring(0, 6)
         return encoded
     }
+
+    fun getOriginalUrl(shortUrl: String) : String? {
+        val originalUrl = repository.findByShortUrl(shortUrl)?.longLink
+        return originalUrl ?: throw UrlNotFoundException("Invalid short url")
+    }
 }
