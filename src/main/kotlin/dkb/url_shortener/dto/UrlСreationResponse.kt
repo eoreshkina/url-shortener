@@ -1,4 +1,4 @@
-package dkb.url_shortner.dto
+package dkb.url_shortener.dto
 
 import java.util.UUID
 

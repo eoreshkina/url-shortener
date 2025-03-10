@@ -1,7 +1,7 @@
-package dkb.url_shortner
+package dkb.url_shortener
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import dkb.url_shortner.dto.UrlCreationRequest
+import dkb.url_shortener.dto.UrlCreationRequest
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.`when`
 import org.springframework.beans.factory.annotation.Autowired
@@ -50,7 +50,7 @@ class ShortenerControllerTest {
 
     @Test
     fun `should return to original url`() {
-        `when`(service.getOriginalUrl(testShortUrl)).thenReturn(testUrl)
+        `when`(service.getLongUrl(testShortUrl)).thenReturn(testUrl)
 
         mockMvc.perform(
             get("/$testShortUrl")
@@ -60,7 +60,7 @@ class ShortenerControllerTest {
 
     @Test
     fun `should return 404 when short url does not exist`() {
-        `when`(service.getOriginalUrl(testShortUrl)).thenReturn(null)
+        `when`(service.getLongUrl(testShortUrl)).thenReturn(null)
 
         mockMvc.perform(
             get("/$testShortUrl")

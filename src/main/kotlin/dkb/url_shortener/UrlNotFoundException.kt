@@ -1,4 +1,4 @@
-package dkb.url_shortner
+package dkb.url_shortener
 
 import java.lang.RuntimeException
 

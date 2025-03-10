@@ -1,4 +1,4 @@
-package dkb.url_shortner
+package dkb.url_shortener
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

@@ -1,7 +1,7 @@
-package dkb.url_shortner
+package dkb.url_shortener
 
-import dkb.url_shortner.dto.UrlCreationRequest
-import dkb.url_shortner.dto.UrlCreationResponse
+import dkb.url_shortener.dto.UrlCreationRequest
+import dkb.url_shortener.dto.UrlCreationResponse
 import jakarta.servlet.http.HttpServletRequest
 import lombok.extern.slf4j.Slf4j
 import org.springframework.http.HttpStatus
@@ -42,12 +42,12 @@ class ShortenerController(private val shortenerService: ShortenerService) {
 
     @GetMapping("{shortCode}")
     fun returnToOriginalUrl(@PathVariable shortCode: String): Any {
-        val originalUrl = shortenerService.getOriginalUrl(shortCode)
+        val longUrl = shortenerService.getLongUrl(shortCode)
 
-        log.info("Original URL for short code $shortCode is $originalUrl")
+        log.info("Original URL for short code $shortCode is $longUrl")
 
-        return if (originalUrl != null) {
-            RedirectView(originalUrl)
+        return if (longUrl != null) {
+            RedirectView(longUrl)
         } else {
             ResponseEntity.status(HttpStatus.NOT_FOUND).body("Short URL is not found")
         }

@@ -1,4 +1,4 @@
-package dkb.url_shortner
+package dkb.url_shortener
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
