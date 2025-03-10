@@ -37,7 +37,7 @@ class ShortenerServiceTest {
         `when`(repository.findByLongUrl(testUrl)).thenReturn(null)
 
         `when`(repository.save(any()))
-            .thenReturn(UrlMapping(longLink = testUrl, shortLink = testShortUrl))
+            .thenReturn(UrlMapping(longUrl = testUrl, shortUrl = testShortUrl))
 
         // when
         val result = service.shortenUrl(testUrl)
@@ -46,15 +46,15 @@ class ShortenerServiceTest {
         verify(repository).findByLongUrl(testUrl)
         verify(repository).save(shortenedLinkCaptor.capture())
 
-        assertEquals(testUrl, result.longLink)
-        assertEquals(testUrl, shortenedLinkCaptor.value.longLink)
-        assertTrue(shortenedLinkCaptor.value.shortLink.matches(Regex("[a-zA-Z0-9]+")))
+        assertEquals(testUrl, result.longUrl)
+        assertEquals(testUrl, shortenedLinkCaptor.value.longUrl)
+        assertTrue(shortenedLinkCaptor.value.shortUrl.matches(Regex("[a-zA-Z0-9]+")))
     }
 
     @Test
     fun `should return existing mapping when original url already exists`() {
         //given
-        val urlMapping = UrlMapping(longLink = testUrl, shortLink = testShortUrl)
+        val urlMapping = UrlMapping(longUrl = testUrl, shortUrl = testShortUrl)
         `when`(repository.findByLongUrl(testUrl)).thenReturn(urlMapping)
 
         //when
@@ -70,7 +70,7 @@ class ShortenerServiceTest {
     @Test
     fun `should return original url`() {
         //given
-        val urlMapping = UrlMapping(longLink = testUrl, shortLink = testShortUrl)
+        val urlMapping = UrlMapping(longUrl = testUrl, shortUrl = testShortUrl)
         `when`(repository.findByShortUrl(testShortUrl)).thenReturn(urlMapping)
 
         //when

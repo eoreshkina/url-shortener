@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/shortener?currentSchema=shortener
+    username: user
+    password: password

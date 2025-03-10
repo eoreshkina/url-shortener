@@ -17,7 +17,7 @@ class ShortenerService(
         val shortUrl = generateShortUrl(originalUrl)
 
         // Save new mapping
-        return repository.save(UrlMapping(longLink = originalUrl, shortLink = shortUrl))
+        return repository.save(UrlMapping(longUrl = originalUrl, shortUrl = shortUrl))
     }
 
     private fun generateShortUrl(originalUrl: String): String {
@@ -28,7 +28,7 @@ class ShortenerService(
     }
 
     fun getOriginalUrl(shortUrl: String) : String? {
-        val originalUrl = repository.findByShortUrl(shortUrl)?.longLink
+        val originalUrl = repository.findByShortUrl(shortUrl)?.longUrl
         return originalUrl ?: throw UrlNotFoundException("Invalid short url")
     }
 }

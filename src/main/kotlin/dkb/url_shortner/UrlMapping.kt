@@ -9,7 +9,7 @@ import java.util.UUID
 data class UrlMapping(
     @Id
     val id: UUID = UUID.randomUUID(),
-    val longLink: String,
-    val shortLink: String,
+    val longUrl: String,
+    val shortUrl: String,
     val createdAt: ZonedDateTime = ZonedDateTime.now()
 )
