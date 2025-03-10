@@ -39,22 +39,19 @@ If the short code exists, the user is redirected to the original URL
 If the short code doesn't exist, a 404 response is returned
 
 ## Getting Started
-Prerequisites
+### Prerequisites
 
 JDK 11 or higher
-Docker and Docker Compose (for running PostgreSQL)
+Docker and Docker Compose
 
-Running the Service
+### Running the Service
 
-Start the PostgreSQL database:
+Run the entire application stack (including PostgreSQL and the URL shortener service):
 ```
 docker compose up -d
 ```
-Build and run the Spring Boot application:
-```
-./gradlew bootRun
-```
-Environment Configuration
+
+### Environment Configuration
 The PostgreSQL database is configured with the following defaults:
 
 Username: user
